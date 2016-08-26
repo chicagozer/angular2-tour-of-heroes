@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
-import { HeroesComponent } from './heroes.component';
-import { HeroDetailComponent } from './hero-detail.component';
+import { CodesComponent } from './codes.component';
+import { CodeDetailComponent } from './code-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -16,14 +16,14 @@ const appRoutes: Routes = [
   },
   {
     path: 'detail/:id',
-    component: HeroDetailComponent
+    component: CodeDetailComponent
   },
   {
-    path: 'heroes',
-    component: HeroesComponent
+    path: 'codes',
+    component: CodesComponent
   }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [DashboardComponent, HeroesComponent, HeroDetailComponent];
+export const routedComponents = [DashboardComponent, CodesComponent, CodeDetailComponent];

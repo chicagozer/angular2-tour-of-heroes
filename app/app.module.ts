@@ -12,8 +12,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { routing, routedComponents } from './app.routing';
-import { HeroService } from './hero.service';
-import { HeroSearchComponent } from './hero-search.component';
+import { CodeService } from './code.service';
+import { CodeSearchComponent } from './code-search.component';
 
 @NgModule({
   imports: [
@@ -24,13 +24,13 @@ import { HeroSearchComponent } from './hero-search.component';
   ],
   declarations: [
     AppComponent,
-    HeroSearchComponent,
+    CodeSearchComponent,
     routedComponents
   ],
   providers: [
-    HeroService,
-    { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
-    { provide: SEED_DATA, useClass: InMemoryDataService }     // in-mem server data
+    CodeService
+   // ,{ provide: XHRBackend, useClass: InMemoryBackendService } // in-mem server
+   // ,{ provide: SEED_DATA, useClass: InMemoryDataService }     // in-mem server data
   ],
   bootstrap: [AppComponent]
 })

@@ -3,22 +3,22 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { HeroSearchService } from './hero-search.service';
-import { Hero } from './hero';
+import { CodeSearchService } from './code-search.service';
+import { Code } from './code';
 
 @Component({
   moduleId: module.id,
-  selector: 'hero-search',
-  templateUrl: 'hero-search.component.html',
-  styleUrls: ['hero-search.component.css'],
-  providers: [HeroSearchService]
+  selector: 'code-search',
+  templateUrl: 'code-search.component.html',
+  styleUrls: ['code-search.component.css'],
+  providers: [CodeSearchService]
 })
-export class HeroSearchComponent implements OnInit {
-  heroes: Observable<Hero[]>;
+export class CodeSearchComponent implements OnInit {
+  codes: Observable<Code[]>;
   private searchTerms = new Subject<string>();
 
   constructor(
-    private heroSearchService: HeroSearchService,
+    private codeSearchService: CodeSearchService,
     private router: Router) { }
 
   search(term: string): void {
@@ -27,23 +27,23 @@ export class HeroSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.heroes = this.searchTerms
+    this.codes = this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
         // return the http search observable
-        ? this.heroSearchService.search(term)
-        // or the observable of empty heroes if no search term
-        : Observable.of<Hero[]>([]))
+        ? this.codeSearchService.search(term)
+        // or the observable of empty codes if no search term
+        : Observable.of<Code[]>([]))
       .catch(error => {
         // TODO: real error handling
         console.log(error);
-        return Observable.of<Hero[]>([]);
+        return Observable.of<Code[]>([]);
       });
   }
 
-  gotoDetail(hero: Hero): void {
-    let link = ['/detail', hero.id];
+  gotoDetail(code: Code): void {
+    let link = ['/detail', code.id];
     this.router.navigate(link);
   }
 }
